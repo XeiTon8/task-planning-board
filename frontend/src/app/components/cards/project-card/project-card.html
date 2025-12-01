@@ -1,0 +1,20 @@
+<div
+  class="project-card"
+  [class.list]="listView"
+  (click)="onOpen()"
+>
+  <div class="project-card__content">
+    <span class="project-card__project-name">{{ project.name }}</span>
+    <span class="project-card__description">
+      {{ project.description || 'No project description' }}
+    </span>
+    <span class="project-card__total-tasks">Total tasks: {{ totalTasks }}</span>
+    <button class="button" (click)="open.emit(project)">Open</button>
+  </div>
+
+  <div class="project-card__action-btns" (click)="$event.stopPropagation()">
+    <button class="button edit" (click)="onEdit($event)">Edit</button>
+    <button class="button delete" (click)="onDelete($event)">Delete</button>
+  </div>
+
+</div>

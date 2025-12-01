@@ -1,0 +1,22 @@
+.projects__header {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.projects-grid {
+  display: flex;
+  gap: 10px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loading {
+  text-align: center;
+  padding: 14px;
+}
+

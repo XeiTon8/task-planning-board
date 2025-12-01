@@ -1,0 +1,45 @@
+  <article class="task-card">
+
+    <header class="task-card__header">
+      <div class="task-card__header-content">
+        <span class="task-card__title">{{ task.title }}</span>
+        <div class="task-card__action-btns">
+          <button class="button edit" (click)="onEdit($event)">Edit</button>
+          <button class="button delete" (click)="onDelete($event)">Delete</button>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="task-card__content">
+
+      <span class="task-card__description">{{ task.description || 'No description' }}</span>
+
+      <span class="task-card__badge"  
+          [ngClass]="{
+          'task-card__badge--low': task.priority === 'low',
+          'task-card__badge--medium': task.priority === 'medium',
+          'task-card__badge--high': task.priority === 'high'
+          }"
+      >
+      Priority: {{ task.priority }}
+      </span>
+
+      <span class="task-card__due-date" *ngIf="task.due_date">Due: {{ task.due_date | date }}</span>
+
+      <span *ngIf="!isEditing" class="task-card__status">
+        {{ task.status | taskStatus }}
+      </span>
+
+      <select
+        *ngIf="isEditing"
+        class="task-card__status-select"
+        [(ngModel)]="task.status"
+      >
+        <option value="todo">To Do</option>
+        <option value="in_progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+      
+    </div>
+  </article>

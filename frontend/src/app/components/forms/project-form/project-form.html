@@ -1,0 +1,27 @@
+<form [formGroup]="form" class="project-form" (ngSubmit)="onSubmit()">
+
+  <h2>{{formType}} Project</h2>
+
+  <label>
+    <span class="label-name">Name</span>
+    <input type="text" formControlName="name" placeholder="Enter project name" />
+  </label>
+
+  <div class="error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+   Name is required.
+  </div>
+
+  <label>
+    <span class="label-name">Description</span>
+    <textarea formControlName="description" placeholder="Optional description"></textarea>
+  </label>
+
+  <div class="form__action-btns">
+    <button type="submit" class="button confirm" [disabled]="form.invalid || loading">{{project ? "Edit" : "Create"}}</button>
+    <button type="button" class="button cancel" (click)="onCancel()">Cancel</button>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Creating project...
+  </div>
+</form>

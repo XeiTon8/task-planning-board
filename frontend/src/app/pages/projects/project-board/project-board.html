@@ -1,0 +1,66 @@
+<main class="board">
+  
+  <div class="board__container">
+
+    <div class="overlay" *ngIf="taskFormOpen">
+      <div class="form-wrapper">
+        <task-form
+          [projectId]="projectId"
+          [task]="editingTask"
+          (created)="onTaskCreated()"
+          (updated)="onTaskUpdated()"
+          (cancel)="closeTaskForm()"
+        ></task-form>
+      </div>
+    </div>
+
+    <header class="board__header">
+      <h1>{{ project?.name }}</h1>
+      <button class="button" (click)="openCreateTask()">Create Task</button>
+      <button class="button" (click)="onGoBack()">Go back</button>
+    </header>
+
+  <section class="board__columns" *ngIf="tasks$ | async as tasks; else loading">
+
+    <div class="board__column to-do">
+      <h2>To Do</h2>
+      <div class="deco-line"></div>
+      <app-task-card
+        *ngFor="let task of todoTasks"
+        [task]="task"
+        (edit)="editTask($event)"
+        (delete)="deleteTask($event)"
+      ></app-task-card>
+    </div>
+
+    <div class="board__column in-progress">
+      <h2>In Progress</h2>
+      <div class="deco-line"></div>
+      <app-task-card
+        *ngFor="let task of inProgressTasks"
+        [task]="task"
+        [isEditing]="taskFormOpen"
+        (edit)="editTask($event)"
+        (delete)="deleteTask($event)"
+      ></app-task-card>
+    </div>
+
+    <div class="board__column done">
+      <h2>Done</h2>
+      <div class="deco-line"></div>
+      <app-task-card
+        *ngFor="let task of doneTasks"
+        [task]="task"
+        [isEditing]="taskFormOpen"
+        (edit)="editTask($event)"
+        (delete)="deleteTask($event)"
+      ></app-task-card>
+    </div>
+
+  </section>
+
+  </div>
+
+  <ng-template #loading>Loading tasks...</ng-template>
+  
+</main>

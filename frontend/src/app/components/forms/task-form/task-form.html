@@ -1,0 +1,51 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h2>{{ task ? 'Edit Task' : 'Create Task' }}</h2>
+
+  <label>
+    <span class="label-name">Title</span> 
+    <input formControlName="title" />
+    <div class="error" *ngIf="form.controls['title'].touched && form.controls['title'].invalid">
+      Title is required.
+    </div>
+  </label>
+
+  <label>
+    <span class="label-name">Description</span>
+    <textarea formControlName="description"></textarea>
+  </label>
+
+  <label>
+    <span>Status</span>
+    <select formControlName="status">
+      <option value="todo">To Do</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+  </label>
+  <div class="error" *ngIf="form.controls['status'].touched && form.controls['status'].invalid">
+    Status is required.
+  </div>
+
+  <label>
+   <span class="label-name">Priority</span>
+    <select formControlName="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </label>
+  <div class="error" *ngIf="form.controls['priority'].touched && form.controls['priority'].invalid">
+    Priority is required.
+  </div>
+
+  <label>
+    <span class="label-name">Due date</span>
+    <input type="date" formControlName="dueDate" />
+  </label>
+
+  <div class="form__action-btns">
+    <button class="button" type="submit" [disabled]="form.invalid">Save</button>
+    <button class="button" type="button" (click)="cancel.emit()">Cancel</button>
+  </div>
+  
+</form>
