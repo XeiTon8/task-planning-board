@@ -22,20 +22,20 @@ The application uses a frontend UI together with a REST API and a PostgreSQL dat
 
 **Manual installation**
 1. For backend, use:
-cd backend
-npm install
-npm run start
+- cd backend
+- npm install
+- npm run start
 
 2. For frontend, use:
-cd frontend
-npm install
-ng serve
+- cd frontend
+- npm install
+- ng serve
 
 ### Environment variables
 All required environment variables are defined inside a `docker-compose.yaml` file:
-POSTGRES_USER: postgres
-POSTGRES_PASSWORD: postgres
-POSTGRES_DB: appdb
+- POSTGRES_USER: postgres
+- POSTGRES_PASSWORD: postgres
+- POSTGRES_DB: appdb
 
 ## Design notes
 1. The app uses a simple database structure with two main tables: **projects** and **tasks**. Each task is linked to a project using a foreign key. 
